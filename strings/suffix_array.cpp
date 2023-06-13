@@ -77,10 +77,35 @@ public:
         return -1;
     }
 
+    // permuted longest common prefix (plcp)
+    /* It finds the longest common prefix in O(n) time. */
+    vector<int> plcp(){
+        int i , l ;
+        vector<int> phi(n) , plcp(n);
+        phi[sa[0]] = -1;
+        for (i = 1; i<n ; i++){
+            phi[sa[i]] = sa[i-1];
+        }
+        for (i = l = 0  ; i<n ;i++){
+            if (phi[i] == -1){
+                plcp[i] = 0; 
+                continue;
+            }
+            while (s[i+l] == s[phi[i]+l]) l++;
+            plcp[i] = l;
+            l = max(l-1, 0);   // decreasing l for next iteration
+        }
+
+        vector<int> lcp(n);
+        for (i = 0 ; i<n; i++){
+            lcp[i] = plcp[sa[i]];
+        }
+        return lcp;
+    }
+
     void display(){
         for (auto i: sa) cout << i << ' ' ; cout << endl;
     }
-
 };
 
 
