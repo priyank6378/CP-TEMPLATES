@@ -12,6 +12,10 @@ void dfs(vector<vector<int>> &g, int s, vector<int> &visited, vector<int> &proce
     process_order.push_back(s);
 }
 
+// ****** KOSARAJU ALGORITHM ******* //
+/*
+This algorithm finds strongly connected components (scc).
+*/
 vector<int> kosaraju_scc(vector<vector<int>> &g){
     int n = g.size();
     vector<int> process_order;
@@ -39,28 +43,4 @@ vector<int> kosaraju_scc(vector<vector<int>> &g){
         }
     }
     return start; // or fcc depend on the context of prob;
-}
-
-
-int main(){
-    int n; cin >> n;
-    int m ; cin >> m;
-    vector<vector<int>> g(n);
-    for(int i = 0 ; i<m ; i++){
-        int a, b;
-        cin >> a >> b;
-        a--, b--;
-        g[a].push_back(b);
-    }
-
-    vector<int> c = kosaraju_fcc(g);
-    if (c.size() == 1){
-        cout << "YES\n";
-    }
-    else {
-        cout << "NO\n";
-        cout << c[1]+1 << ' ' << c[0]+1 << endl;
-    }
-
-    return 0;
 }

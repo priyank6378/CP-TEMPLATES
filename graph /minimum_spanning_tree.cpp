@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include "union_find.cpp"
 using namespace std;
 
 class DisjointSetUnion
@@ -34,6 +33,12 @@ public:
 };
 
 
+///////////////////////////////////////////////////////////////////////////
+/**********************KRUSKAL ALGORITHM*****************************/
+/* 
+It is used to find minimum spanning tree.
+*/
+///////////////////////////////////////////////////////////////////////////
 long int  kruskal(vector<pair<int,pair<int,int>>> edges, int v){
     // vector<pair<int,pair<int,int>>> mst;
     long int cost = 0;
