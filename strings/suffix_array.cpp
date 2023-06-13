@@ -65,16 +65,29 @@ public:
         return 0;
     }
 
-    int search(string& p){
+    pair<int,int> search(string& p){
         int l = 0 , h = n-1;
         while (l<h){
             int m = (l+h)/2;
-            if (_strcmp(p, m)>=0) h = m;
+            if (_strcmp(p, sa[m])>=0) h = m;
             else l = m+1;
         }
-        if (_strcmp(p, h) == 0)
-        return h;
-        return -1;
+        int lo = 0;
+        if (_strcmp(p, sa[h]) == 0)
+            lo = h;
+        else return {-1,-1};
+        // finding upper bound
+        l = 0 , h = n-1;
+        while (l<h){
+            int m = (l+h)/2 + (l+h)%2;
+            if (_strcmp(p, sa[m])>0) h = m-1;
+            else l = m;
+        }
+        int hi = 0;
+        if (_strcmp(p,sa[h]) == 0)
+            hi = h;
+        else hi = lo;
+        return {lo, hi};
     }
 
     // permuted longest common prefix (plcp)
